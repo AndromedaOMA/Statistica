@@ -2,38 +2,34 @@
 # a)
 
 #LEGENDA: Poisson -> purple; Geometric -> red; B -> black;
-par(mfrow = c(1,3), mar = c(2, 2, 2, 2))
-
-l = 3
+lam = 3
 k = 0:10
-poisson = dpois(k:n, lam)
-plot(k, poisson, type = "l", pch = 16, col = "#ab11ad",
+pois = dpois(k:n, lam)
+plot(k, pois, type = "l", col = "#ab11ad",
 xlab = "Valoarea k", ylab = "Masa de probab", main = "Distrib. Poisson, Geom si B")
 
 p = 0.8
-geometric = dgeom(k, p)
-lines(k, geometric, type = "l", pch = 17, col = "#ff0000")
+geom = dgeom(k:n, p)
+lines(k, geom, type = "l", col = "#ff0000")
 
 n = 10
 p = 0.4
-binomial = dbinom(k, n, p)
-lines(k, binomial, type = "l", pch = 15, col = "#000000")
+binom = dbinom(k:n, n, p)
+lines(k, binom, type = "l", col = "#000000")
 
 
 #aici am incercat sa o implementez ca o functie...
 toate_reprezentarile = function(lam, p, n, k)
 {
-  par(mfrow = c(1,3), mar = c(2, 2, 2, 2))
-
-  poisson = dpois(k:n, lam)
-  plot(k, poisson, type = "l", pch = 16, col = "#ab11ad",
+  pois = dpois(k:n, lam)
+  plot(k, pois, type = "l", col = "#ab11ad",
   xlab = "Valoarea k", ylab = "Masa de probab", main = "Distrib. Poisson, Geom si B")
 
-  geometric = dgeom(k:n, p)
-  lines(k, geometric, type = "l", pch = 17, col = "#ff0000")
+  geom = dgeom(k:n, p)
+  lines(k, geom, type = "l", col = "#ff0000")
 
-  binomial = dbinom(k:n, n, p)
-  lines(k, binomial, type = "l", pch = 15, col = "#000000")
+  binom = dbinom(k:n, n, p)
+  lines(k, binom, type = "l", col = "#000000")
 }
 toate_reprezentarile(2, 0.6, 10, 1)
 
@@ -41,7 +37,7 @@ toate_reprezentarile(2, 0.6, 10, 1)
 # b)
 
 #prob Geom
-p = 0.8
+p = 0.1
 
 p_impar = 1 / (2 - p)
 print(p_impar)
