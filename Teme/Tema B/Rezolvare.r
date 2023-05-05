@@ -24,15 +24,13 @@ LNM_Geometric()
 
 
 #B2
+n = 50
+N = c(5000, 10000, 20000)
+z = c(-1.5, 0, 1.5)
+sigma = sqrt(sqrt(var/n)/n)
 TLC_Student = function(r)
 {
   var = r/(r-2)
-  n = 50
-  N = c(5000, 10000, 20000)
-  z = c(-1.5, 0, 1.5)
-
-  DevSt = sqrt(var/n)
-  sigma = sqrt(DevSt/n)
   nr = 0
   for(i in 1:3)
   {
@@ -42,9 +40,9 @@ TLC_Student = function(r)
     if (mean(val) <= z*sigma)
       nr = nr+1
   }
-  return(nr/N)
+  return(nr/3)
 }
-TLC_Student(2)
+TLC_Student(5)
 
 
 
