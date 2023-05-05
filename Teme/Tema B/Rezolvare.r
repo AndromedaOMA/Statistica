@@ -34,16 +34,17 @@ TLC_Student = function(r)
   for(i in 1:3)
   {
     val = rt(1, r)
+    err = abs(mean(rt(n,r)))
     for (j in 1:n)
       val[j] = rt(1, r)
     if (mean(val) <= z[i]*sigma)
-      nr = nr+1
+      nr = nr + err
   }
+  cat('Erorile absolute sunt ',  abs(pnorm(z) - abs(z[i]*sigma)/N) / pnorm(z), '\n');
+  print(pnorm(z));
   return(nr/3)
 }
 TLC_Student(5)
-
-
 
 #B3
 h=13
