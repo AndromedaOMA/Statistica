@@ -1,1 +1,1 @@
-# Statistica
+# Statistica - Olaru Marius-Alexandru
