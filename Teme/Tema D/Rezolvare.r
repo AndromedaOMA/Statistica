@@ -102,3 +102,21 @@ dim_minimum = function(a, probability)
 }
 dim_min = dim_minimum(0.5, 1 - 1e-7)
 dim_min
+
+#VARIANTA
+#a)
+D3 = function(S, a)
+{
+  n = length(S)
+  m = floor(a * log(n))
+  S1 = sample(S, m)
+  sorted_S1 = sort(S1)
+  
+  median_value = sorted_S1[floor(m/2) + 1]
+  return(median_value)
+}
+
+S = c(1, 5, 3, 9, 2, 7, 4, 6, 8, 10)
+a = 4  
+median_value = D3(S, a)
+print(median_value)
