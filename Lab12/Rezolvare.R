@@ -161,7 +161,7 @@ test_proportion =function( alfa, n, succese, p0, tip_ipoteza){
        cat("criticalz=",criticalz)
        if(zscore > criticalz)
            print("HO nu se poate respinge")
-       else 
+       else
            print("HO se respinge")
         }
     if(tip_ipoteza=="s"){
