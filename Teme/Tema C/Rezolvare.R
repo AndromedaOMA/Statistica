@@ -24,8 +24,7 @@ estimate_volume = function()
 }
 estimate_volume()
 
-
-
+#================================================================================
 
 #C2
 #prin calcul matematic avem:
@@ -47,7 +46,7 @@ patrulater_area = function(N) {
 }
 patrulater_area(50000)
 
-
+#================================================================================
 
 #C3
 #a)
@@ -64,7 +63,8 @@ MCimprovedintegration=function(N)
 MCimprovedintegration(10000)
 
 #b)
-MCimprovedintegration <- function(N) {
+MCimprovedintegration = function(N)
+{
   sum = 0
   for(i in 1:N) {
     #u = runif(1, -Inf, 0) #eroare la -Inf...
@@ -76,7 +76,8 @@ MCimprovedintegration <- function(N) {
 MCimprovedintegration(1000)
 
 #c)
-MCimprovedintegration <- function(N) {
+MCimprovedintegration = function(N)
+{
   sum = 0
   for(i in 1:N) {
     #u = runif(1, -Inf, 0) #eroare la -Inf...
@@ -87,59 +88,62 @@ MCimprovedintegration <- function(N) {
 }
 MCimprovedintegration(1000)
 
-
+#================================================================================
 
 #C4
+# a)
 ex4a = function(N, m, n, p, q)
 {
-  get_nr_days = function()
+  numar_zile = function()
   {
-    nr_days = 1
-    nr_fake_acc = m
-    while (nr_fake_acc > 0)
+    nr_zile = 1
+    nr_cont_fals = m
+    while (nr_cont_fals > 0)
     {
-      new_fake_acc = nr_fake_acc
-      for (i in 1:nr_fake_acc)
+      nou_cont_fals = nr_cont_fals
+      for (i in 1:nr_cont_fals)
       {
         p_del = runif(1, 0, 1)
         if (p_del <= q)
-          new_fake_acc = new_fake_acc - 1
+          nou_cont_fals = nou_cont_fals - 1
       }
-      nr_fake_acc = new_fake_acc
-      nr_fake_acc = new_fake_acc + rbinom(1, n, p)
-      nr_days = nr_days + 1
+      nr_cont_fals = nou_cont_fals
+      nr_cont_fals = nou_cont_fals + rbinom(1, n, p)
+      nr_zile = nr_zile + 1
     }
-    return (nr_days)
+    return (nr_zile)
   }
+
   s = 0
   for (i in 1:N)
-  {
-    s = s + get_nr_days()
-  }<-
+    {
+      s = s + numar_zile()
+    }=
   return(s/N)
 }
-print(ex4a(20, 100, 500, 0.5, 0.1))# 1000 10 0.2 0.8
+ex4a(20, 100, 500, 0.5, 0.1)
 
+# b)
 ex4b = function(N, m, n, p, q)
 {
   get_nr_days = function()
   {
-    nr_days = 1
-    nr_fake_acc = m
-    while (nr_days < 40 && nr_fake_acc > 0)
+    nr_zile = 1
+    nr_cont_fals = m
+    while (nr_zile < 40 && nr_cont_fals > 0)
     {
-      new_fake_acc = nr_fake_acc
-      for (i in 1:nr_fake_acc)
+      nou_cont_fals = nr_cont_fals
+      for (i in 1:nr_cont_fals)
       {
         p_del = runif(1, 0, 1)
         if (p_del <= q)
-          new_fake_acc = new_fake_acc - 1
+          nou_cont_fals = nou_cont_fals - 1
       }
-      nr_fake_acc = new_fake_acc
-      nr_fake_acc = new_fake_acc + rbinom(1, n, p)
-      nr_days = nr_days + 1
+      nr_cont_fals = nou_cont_fals
+      nr_cont_fals = nou_cont_fals + rbinom(1, n, p)
+      nr_zile = nr_zile + 1
     }
-    return (nr_fake_acc)
+    return (nr_cont_fals)
   }
   s = 0
   for (i in 1:N)
@@ -149,8 +153,9 @@ ex4b = function(N, m, n, p, q)
   }
   return(s/N)
 }
-print(ex4b(20, 100, 10, 0.2, 0.8))# 1000 10 0.2 0.8
+print(ex4b(20, 100, 10, 0.2, 0.8))
 
+# c)
 ex4c = function(N, m, n, p, q)
 {
   alfa = 0.01

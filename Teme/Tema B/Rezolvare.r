@@ -6,8 +6,8 @@ LNM_Geometric = function()
 {
     for (i in 1:4)
        {
-         cat("For N =", N[i], "and P =", P[i], ":\n",  
-        "Probabilitatea este ", 1/P[i], "\n",  
+         cat("For N =", N[i], "and P =", P[i], ":\n",
+        "Probabilitatea este ", 1/P[i], "\n",
         "Media esantionului curent este ", mean(rgeom(N[i], P[i])), "\n",
         "Diferenta dintre probabilitatea si media esantionului curent este ", 1/P[i]-mean(rgeom(N[i], P[i])), "\n\n")
          M[i] = 1/P[i]-mean(rgeom(N[i], P[i]))
@@ -15,12 +15,12 @@ LNM_Geometric = function()
        
       if(M[2]<M[4])
         cat("Sirul de variabile aleatoare X_i nu respecta proprietatea LNM: media aritmetica a esantioanelor nu se apropie de 1/p pe masura ce numarul de esantioanelor creste")
-      else 
+      else
         cat("Sirul de variabile aleatoare X_i respecta proprietatea LNM: media aritmetica a esantioanelor se apropie de 1/p pe masura ce numarul de esantioanelor creste")
 }
 LNM_Geometric()
 
-
+#================================================================================
 
 #B2
 n = 50
@@ -40,11 +40,13 @@ TLC_Student = function(r)
     if (mean(val) <= z[i]*sigma)
       nr = nr + err
   }
-  cat('Erorile absolute sunt ',  abs(pnorm(z) - abs(z[i]*sigma)/N) / pnorm(z), '\n');
-  print(pnorm(z));
+  cat('Erorile absolute sunt ',  abs(pnorm(z) - abs(z[i]*sigma)/N) / pnorm(z), '\n')
+  print(pnorm(z))
   return(nr/3)
 }
 TLC_Student(5)
+
+#================================================================================
 
 #B3
 h=13

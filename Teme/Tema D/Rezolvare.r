@@ -1,15 +1,15 @@
-# 1
+# D1
 # a)
 x = c(1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3)
 M = 1000000
-find_M_element = function(x, M) {
+find_M_element = function(x, M)
+{
     n = length(x)
     for (i in 1:M)
     {
         index = sample(1:n, 1)
-        if (sum(x == x[index]) >= n / 2 + 1) {
+        if (sum(x == x[index]) >= n / 2 + 1)
             return(x[index])
-        }
     }
     return("x nu are M-element")
 }
@@ -17,11 +17,12 @@ result = find_M_element(x, M)
 print(result)
 
 # b)
-k <- ceiling(log2(1/(10^7)))
+k = ceiling(log2(1/(10^7)))
 print(k)
 
+#================================================================================
 
-# 2
+# D2
 A = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 i = 5
 elementith = function(i, A)
@@ -42,13 +43,14 @@ elementith = function(i, A)
         else
             return(elementith(i - n + length(A_mare), A_mare))
 }
-rez = elementith(i, A)
-print(rez)
+elementith(i, A)
 
+#================================================================================
 
-# 3
+# D3
 # a)
-SORT = function(v) {
+SORT = function(v)
+{
     n = length(v)
     for (i in 1:(n - 1))
     {
@@ -84,9 +86,25 @@ mediana = function(S, a)
 }
 mediana(S, a)
 
+#VARIANTA
+#a)
+mediana = function(S, a)
+{
+  n = length(S)
+  m = floor(a * log(n))
+  S1 = sample(S, m)
+  sorted_S1 = sort(S1)
+
+  median_value = sorted_S1[floor(m/2) + 1]
+  return(median_value)
+}
+
+S = c(1, 5, 3, 9, 2, 7, 4, 6, 8, 10)
+a = 0.5
+mediana(S, a)
 
 # b)
-dim_minimum = function(a, probability)
+dim_minimum = function(a, prob)
 {
     n = 1
     while (TRUE)
@@ -94,29 +112,10 @@ dim_minimum = function(a, probability)
         S = sample(1:n, n, TRUE)
 
         p = 1 - 2 / n^2
-        if (p >= probability)
+        if (p >= prob)
             break
         n = n + 1
     }
     return(n)
 }
-dim_min = dim_minimum(0.5, 1 - 1e-7)
-dim_min
-
-#VARIANTA
-#a)
-D3 = function(S, a)
-{
-  n = length(S)
-  m = floor(a * log(n))
-  S1 = sample(S, m)
-  sorted_S1 = sort(S1)
-  
-  median_value = sorted_S1[floor(m/2) + 1]
-  return(median_value)
-}
-
-S = c(1, 5, 3, 9, 2, 7, 4, 6, 8, 10)
-a = 4  
-median_value = D3(S, a)
-print(median_value)
+dim_minimum(0.5, 1 - 1e-7)

@@ -53,22 +53,25 @@ print(p_mic_20)
 
 #mamma mia
 
-
+#================================================================================
 
 # A2.
 
-#TEST_start
+#TEST_start---------------------------
 # primesc eroare cand citesc fisierul "note.txt", drept urmare voi lucra cu csv
-# fisierul csv l-am gasit pe site-ul domnului profesor Olariu.
+#     y = read.table(header=T, "note.txt")
 
-# y = read.table(header=T, "note.txt")
-y = read.csv(file="note.csv", header =T)
+# fisierul csv l-am gasit pe site-ul domnului profesor Olariu.
+# primesc eroare si la note.csv, de aceea voi lucra cu PATH-ul acestuia
+#     y = read.csv(file="note.csv", header =T)
+
+y = read.csv(file="D:/FACULTATE/RStudio/Statistica/Teme/Tema A/note.csv", header =T)
 
 y1 = y[['P']]
 y2 = y[['S']]
 
 # Merge:)
-#TEST_final
+#TEST_final---------------------------
 
 # a)
 stat_list = function(nume)
@@ -88,7 +91,8 @@ stat_list = function(nume)
   print(paste("Prima cvartilă:", cvartila_1))
   print(paste("A doua cvartilă:", cvartila_2))
 }
-stat_list("note.csv")
+#stat_list("note.csv")
+stat_list("D:/FACULTATE/RStudio/Statistica/Teme/Tema A/note.csv")
 
 
 # b)
@@ -105,15 +109,18 @@ elim_val_aberante = function(nume_fisier, nume_esantion)
 
   return(esantion_filtrat)
 }
-esantion_P_filtrat = elim_val_aberante("note.csv", "P")
-esantion_P_filtrat = elim_val_aberante("note.csv", "S")
+#esantion_P_filtrat = elim_val_aberante("note.csv", "P")
+#esantion_P_filtrat = elim_val_aberante("note.csv", "S")
+elim_val_aberante("D:/FACULTATE/RStudio/Statistica/Teme/Tema A/note.csv", "P")
+elim_val_aberante("D:/FACULTATE/RStudio/Statistica/Teme/Tema A/note.csv", "S")
 
 # c)
-reprezentare = function(nume_fisier)
-{
-  note = read.csv(nume_fisier, header=TRUE)$Nota
+reprezentare = function(nume_fisier) {
+  data = read.csv(nume_fisier, header = TRUE)
+  note = data[["Nota"]]
   intervale = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-  frecvente = table(cut(note, breaks=intervale, right=FALSE))
-  plot(frecvente, type="p", lwd=10, lcol="#00ff37", xlab="Interval", ylab="Frecventa", main="Distributie")
+  frecvente = table(cut(note, breaks = intervale, right = FALSE))
+  plot(frecvente, type = "p", lwd = 10, lcol = "red", xlab = "Interval", ylab = "Frecventa", main = "Distributie")
 }
-reprezentare("note.csv")
+#reprezentare("note.csv")
+reprezentare("D:/FACULTATE/RStudio/Statistica/Teme/Tema A/note.csv")

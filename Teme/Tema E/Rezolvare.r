@@ -1,4 +1,4 @@
-#1
+# E1
 nivelele_de_incredere = function(n, sample_mean, s, alpha)
 {
   se = s / sqrt(n)# eroarea standard a mediei eșantionului
@@ -23,10 +23,9 @@ nivelele_de_incredere(n, sample_mean, s, alpha)
 alpha = 0.01
 nivelele_de_incredere(n, sample_mean, s, alpha)
 
+#================================================================================
 
-
-
-#2
+# E2
 interval_incredere = function(n, sample_mean, s, alpha)
 {
   se = s / sqrt(n)
@@ -44,10 +43,9 @@ alpha = 0.05
 
 interval_incredere(n, sample_mean, s, alpha)
 
+#================================================================================
 
-
-
-#3
+# E3
 test_ipoteza = function(n, x, p, alpha)
 {
   pr = x / n  # Procent clienti nemultumiti
