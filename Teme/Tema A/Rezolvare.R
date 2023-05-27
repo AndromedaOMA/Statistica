@@ -50,12 +50,22 @@ print(p_mic_20)
 
 #------------------------------
 # c)
-
-#mamma mia
+cea_mai_mica_val = function(lambda) {
+  k0 = 0
+  p = 1  #Probabilitatea initiala
+  val = 10^(-7)  #Cea mai mica val
+  while (p >= val) {
+    k0 = k0 + 1
+    p = 1 - ppois(k0 - 1, lambda)
+  }
+  return(k0)
+}
+cea_mai_mica_val(2)
 
 #================================================================================
 
 # A2.
+
 
 #TEST_start---------------------------
 # primesc eroare cand citesc fisierul "note.txt", drept urmare voi lucra cu csv
@@ -73,18 +83,20 @@ y2 = y[['S']]
 # Merge:)
 #TEST_final---------------------------
 
+
+
 # a)
 stat_list = function(nume)
 {
   data = read.csv(nume, stringsAsFactors = FALSE)
-  
+
   mediana = median(unlist(data))
   media = mean(unlist(data))
   deviatie_standard = sd(unlist(data))
-  
+
   cvartila_1 = quantile(unlist(data), 0.25)
   cvartila_2 = quantile(unlist(data), 0.75)
-  
+
   print(paste("Mediana:", mediana))
   print(paste("Media:", media))
   print(paste("Deviația standard:", deviatie_standard))
@@ -97,13 +109,13 @@ stat_list("D:/FACULTATE/RStudio/Statistica/Teme/Tema A/note.csv")
 
 # b)
 elim_val_aberante = function(nume_fisier, nume_esantion)
-{  
+{
   y = read.csv(file = nume_fisier, header = T)
   esantion = switch(nume_esantion, "P" = y[["P"]], "S" = y[["S"]])
-  
+
   media_esantion = mean(esantion)
   deviatia_standard = sd(esantion)
-  
+
   valori_aberante = esantion[abs(esantion - media_esantion) >= 3 * deviatia_standard]
   esantion_filtrat = esantion[abs(esantion - media_esantion) < 3 * deviatia_standard]
 
@@ -115,12 +127,14 @@ elim_val_aberante("D:/FACULTATE/RStudio/Statistica/Teme/Tema A/note.csv", "P")
 elim_val_aberante("D:/FACULTATE/RStudio/Statistica/Teme/Tema A/note.csv", "S")
 
 # c)
-reprezentare = function(nume_fisier) {
+reprezentare = function(nume_fisier, nume_esantion)
+{
   data = read.csv(nume_fisier, header = TRUE)
-  note = data[["Nota"]]
-  intervale = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-  frecvente = table(cut(note, breaks = intervale, right = FALSE))
-  plot(frecvente, type = "p", lwd = 10, lcol = "red", xlab = "Interval", ylab = "Frecventa", main = "Distributie")
+  esantion = data[[nume_esantion]]  #Extrage esantionul specificat
+  esantion_fara_aberante = elim_val_aberante(nume_fisier, nume_esantion)
+  intervale = seq(1, 10, by = 1)  # Defineste intervalele
+  esantion_fara_aberante = as.numeric(as.character(esantion_fara_aberante))
+  frecvente = table(cut(esantion_fara_aberante, intervale, TRUE))
+  barplot(frecvente, "Distributia frecventelor", "Intervale", "Frecventa","red")
 }
-#reprezentare("note.csv")
-reprezentare("D:/FACULTATE/RStudio/Statistica/Teme/Tema A/note.csv")
+reprezentare("D:/FACULTATE/RStudio/Statistica/Teme/Tema A/note.csv", "P")
